@@ -256,6 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sendBtn.addEventListener('click', handleSend);
 
     userInput.addEventListener('keydown', (e) => {
+        // Send on 'Enter' (but allow Shift+Enter for new lines)
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
             handleSend();
