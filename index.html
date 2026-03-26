@@ -146,12 +146,153 @@
         #send-btn:hover {
             background-color: var(--accent-hover);
         }
+
+        /* ── Home page ─────────────────────────────────────────── */
+        #home-container {
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+
+        #home-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        #home-header svg {
+            margin-right: 10px;
+            fill: var(--text-color);
+        }
+
+        #new-chat-btn {
+            margin-left: auto;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            font-weight: 600;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #new-chat-btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        #history-section {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #history-section h2 {
+            margin: 0 0 10px 0;
+            font-size: 0.85em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #8b949e;
+        }
+
+        .history-item {
+            background-color: #0d1117;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: border-color 0.2s, background-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .history-item:hover {
+            border-color: #58a6ff;
+            background-color: #161b22;
+        }
+
+        .history-item-title {
+            font-weight: 600;
+            font-size: 0.95em;
+            color: #58a6ff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .history-item-preview {
+            font-size: 0.85em;
+            color: #8b949e;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .history-item-meta {
+            font-size: 0.78em;
+            color: #6e7681;
+            margin-top: 2px;
+        }
+
+        /* ── Chat header back button ───────────────────────────── */
+        #back-btn {
+            background: none;
+            border: none;
+            color: #58a6ff;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0 12px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.2s;
+        }
+
+        #back-btn:hover {
+            color: #79c0ff;
+        }
+
+        #chat-container {
+            display: none;
+        }
     </style>
 </head>
 <body>
+    <!-- Home page -->
+    <div id="home-container">
+        <div id="home-header">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+                <path d="M9.875 6.5a4.625 4.625 0 0 1 8.62-2.126.75.75 0 0 0 1.306-.748A6.125 6.125 0 0 0 8.5 6.072v.928H5.75A1.75 1.75 0 0 0 4 8.75v3.5c0 .966.784 1.75 1.75 1.75h1.5v1.25A4.75 4.75 0 0 0 12 20h.5a.75.75 0 0 0 0-1.5h-.5a3.25 3.25 0 0 1-3.25-3.25v-1.25h9.5A1.75 1.75 0 0 0 20 12.25v-3.5A1.75 1.75 0 0 0 18.25 7H10V6.5Z"></path>
+            </svg>
+            GitHub Copilot Agent
+            <button id="new-chat-btn">+ New Chat</button>
+        </div>
+        <div id="history-section">
+            <h2>Recent Chats</h2>
+            <!-- Populated by app.js -->
+        </div>
+    </div>
+
+    <!-- Chat page -->
     <div id="chat-container">
         <div id="chat-header">
-            <!-- Copilot Logo SVG -->
+            <button id="back-btn">&#8592; Back</button>
             <svg viewBox="0 0 24 24" width="24" height="24">
                 <path d="M9.875 6.5a4.625 4.625 0 0 1 8.62-2.126.75.75 0 0 0 1.306-.748A6.125 6.125 0 0 0 8.5 6.072v.928H5.75A1.75 1.75 0 0 0 4 8.75v3.5c0 .966.784 1.75 1.75 1.75h1.5v1.25A4.75 4.75 0 0 0 12 20h.5a.75.75 0 0 0 0-1.5h-.5a3.25 3.25 0 0 1-3.25-3.25v-1.25h9.5A1.75 1.75 0 0 0 20 12.25v-3.5A1.75 1.75 0 0 0 18.25 7H10V6.5Z"></path>
             </svg>
@@ -168,6 +309,7 @@
             <button id="send-btn">Send</button>
         </div>
     </div>
+
     <script src="app.js"></script>
 </body>
 </html>
