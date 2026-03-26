@@ -99,13 +99,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Event Listeners
-    sendBtn.addEventListener('click', handleSend);
+    sendBtn.addEventListener('click', () => { createSparkles(); handleSend(); });
     
     userInput.addEventListener('keydown', (e) => {
         // Send on 'Enter' (but allow Shift+Enter for new lines)
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
+            createSparkles();
             handleSend();
         }
     });
+
+    function createSparkles() {
+        const rect = userInput.getBoundingClientRect();
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top;
+        const colors = ['#58a6ff', '#f78166', '#ffa657', '#7ee787', '#d2a8ff', '#ffffff'];
+        const count = 18;
+
+        for (let i = 0; i < count; i++) {
+            const spark = document.createElement('span');
+            spark.className = 'spark';
+            const angle = (Math.PI * 2 / count) * i - Math.PI / 2;
+            const distance = 40 + Math.random() * 60;
+            const dx = Math.cos(angle) * distance;
+            const dy = Math.sin(angle) * distance;
+            spark.style.left = `${originX}px`;
+            spark.style.top  = `${originY}px`;
+            spark.style.setProperty('--dx', `${dx}px`);
+            spark.style.setProperty('--dy', `${dy}px`);
+            spark.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.appendChild(spark);
+            spark.addEventListener('animationend', () => spark.remove());
+        }
+    }
 });
