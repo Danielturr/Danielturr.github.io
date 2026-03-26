@@ -181,8 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Parse line breaks
         formattedText = formattedText.replace(/\n/g, '<br>');
 
-        msgDiv.innerHTML = `<strong>${sender === 'user' ? 'You' : 'Copilot'}:</strong> <br> ${formattedText}`;
-
+        msgDiv.innerHTML = `<strong>${sender === 'user' ? 'You' : 'ChatForFun'}:</strong> <br> ${formattedText}`;
+        
         chatBox.appendChild(msgDiv);
         chatBox.scrollTop = chatBox.scrollHeight;
     }
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const typingIndicator = document.createElement('div');
         typingIndicator.id = 'typing';
         typingIndicator.className = 'message copilot-message';
-        typingIndicator.innerHTML = '<em>Copilot is thinking...</em>';
+        typingIndicator.innerHTML = '<em>ChatForFun is thinking...</em>';
         chatBox.appendChild(typingIndicator);
         chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await res.json();
                 addMessage('copilot', data.reply);
             } catch (error) {
-                addMessage('copilot', 'Error: Unable to reach the Copilot Agent.');
+                addMessage('copilot', 'Error: Unable to reach ChatForFun.');
             }
             */
 
@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (lowerInput.includes('@workspace')) {
             return "I've searched your workspace. It looks like you are working on a front-end web application using standard HTML/JS. How can I help you modify your `index.html` or `app.js`?";
         } else {
-            return "I am a simulated demo of a Copilot Agent!\n\nYou can ask me to `refactor` code, `explain` a concept, or use `@workspace` to see how I handle different commands. To make me fully functional, connect `app.js` to your real agent endpoint!";
+            return "I am ChatForFun!\n\nYou can ask me to `refactor` code, `explain` a concept, or use `@workspace` to see how I handle different commands. To make me fully functional, connect `app.js` to your real agent endpoint!";
         }
     }
 
